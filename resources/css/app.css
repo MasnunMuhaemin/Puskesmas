@@ -7,9 +7,37 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif,
+    --font-sans:
+        "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
 
     --color-primary: #309898;
+}
+
+/* Custom Primary Classes */
+@layer utilities {
+    .primary {
+        color: #309898;
+    }
+
+    .bg-primary {
+        background-color: #309898;
+    }
+
+    .border-primary {
+        border-color: #309898;
+    }
+
+    .hover\:bg-primary:hover {
+        background-color: #309898;
+    }
+
+    .hover\:text-primary:hover {
+        color: #309898;
+    }
+
+    .text-primary {
+        color: #309898;
+    }
 }
