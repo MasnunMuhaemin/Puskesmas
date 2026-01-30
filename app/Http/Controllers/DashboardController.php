@@ -166,7 +166,7 @@ class DashboardController extends Controller
         
         $rekamMedis = collect();
         if ($pasien) {
-            $rekamMedis = RekamMedis::with(['dokter.poli'])
+            $rekamMedis = RekamMedis::with(['dokter.poli', 'reseps.obat'])
                 ->where('pasien_id', $pasien->id)
                 ->latest('tanggal_periksa')
                 ->get();

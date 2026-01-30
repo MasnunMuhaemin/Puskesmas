@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\RekamMedis;
 use App\Models\Pasien;
 use App\Models\Dokter;
+use App\Models\Obat;
+use App\Models\Resep;
 use Illuminate\Http\Request;
 
 class RekamMedisController extends Controller
@@ -43,8 +45,9 @@ class RekamMedisController extends Controller
         $dokters = Dokter::with('poli')->orderBy('nama')->get();
         
         $selectedPasien = $pasienId ? Pasien::find($pasienId) : null;
+        $obats = Obat::where('stok', '>', 0)->orderBy('nama_obat')->get();
         
-        return view('admin.rekam-medis.create', compact('pasiens', 'dokters', 'selectedPasien'));
+        return view('admin.rekam-medis.create', compact('pasiens', 'dokters', 'selectedPasien', 'obats'));
     }
 
     /**
@@ -59,12 +62,38 @@ class RekamMedisController extends Controller
             'diagnosa' => 'required|string',
             'tindakan' => 'required|string',
             'tanggal_periksa' => 'required|date',
+            'resep' => 'nullable|array',
+            'resep.*.obat_id' => 'required|exists:obats,id',
+            'resep.*.jumlah' => 'required|integer|min:1',
+            'resep.*.aturan_pakai' => 'required|string',
         ]);
 
-        RekamMedis::create($validated);
+        $rekamMedis = RekamMedis::create([
+            'pasien_id' => $validated['pasien_id'],
+            'dokter_id' => $validated['dokter_id'],
+            'keluhan' => $validated['keluhan'],
+            'diagnosa' => $validated['diagnosa'],
+            'tindakan' => $validated['tindakan'],
+            'tanggal_periksa' => $validated['tanggal_periksa'],
+        ]);
+
+        if (isset($validated['resep'])) {
+            foreach ($validated['resep'] as $item) {
+                Resep::create([
+                    'rekam_medis_id' => $rekamMedis->id,
+                    'obat_id' => $item['obat_id'],
+                    'jumlah' => $item['jumlah'],
+                    'aturan_pakai' => $item['aturan_pakai'],
+                ]);
+                
+                // Kurangi stok
+                $obat = Obat::find($item['obat_id']);
+                $obat->decrement('stok', $item['jumlah']);
+            }
+        }
 
         return redirect()->route(auth()->user()->role . '.rekam-medis.index')
-            ->with('success', 'Rekam medis berhasil ditambahkan!');
+            ->with('success', 'Rekam medis dan resep berhasil disimpan!');
     }
 
     /**
@@ -83,7 +112,10 @@ class RekamMedisController extends Controller
     {
         $pasiens = Pasien::orderBy('nama')->get();
         $dokters = Dokter::with('poli')->orderBy('nama')->get();
-        return view('admin.rekam-medis.edit', compact('rekamMedi', 'pasiens', 'dokters'));
+        $obats = Obat::orderBy('nama_obat')->get();
+        $rekamMedi->load('reseps.obat');
+
+        return view('admin.rekam-medis.edit', compact('rekamMedi', 'pasiens', 'dokters', 'obats'));
     }
 
     /**
@@ -98,12 +130,52 @@ class RekamMedisController extends Controller
             'diagnosa' => 'required|string',
             'tindakan' => 'required|string',
             'tanggal_periksa' => 'required|date',
+            'resep' => 'nullable|array',
+            'resep.*.obat_id' => 'required|exists:obats,id',
+            'resep.*.jumlah' => 'required|integer|min:1',
+            'resep.*.aturan_pakai' => 'required|string',
         ]);
 
-        $rekamMedi->update($validated);
+        // 1. Kembalikan stok lama sebelum diupdate
+        foreach ($rekamMedi->reseps as $resepLama) {
+            $obat = Obat::find($resepLama->obat_id);
+            if ($obat) {
+                $obat->increment('stok', $resepLama->jumlah);
+            }
+        }
+
+        // 2. Hapus resep lama
+        $rekamMedi->reseps()->delete();
+
+        // 3. Update data rekam medis
+        $rekamMedi->update([
+            'pasien_id' => $validated['pasien_id'],
+            'dokter_id' => $validated['dokter_id'],
+            'keluhan' => $validated['keluhan'],
+            'diagnosa' => $validated['diagnosa'],
+            'tindakan' => $validated['tindakan'],
+            'tanggal_periksa' => $validated['tanggal_periksa'],
+        ]);
+
+        // 4. Tambahkan resep baru dan kurangi stok
+        if (isset($validated['resep'])) {
+            foreach ($validated['resep'] as $item) {
+                Resep::create([
+                    'rekam_medis_id' => $rekamMedi->id,
+                    'obat_id' => $item['obat_id'],
+                    'jumlah' => $item['jumlah'],
+                    'aturan_pakai' => $item['aturan_pakai'],
+                ]);
+                
+                $obat = Obat::find($item['obat_id']);
+                if ($obat) {
+                    $obat->decrement('stok', $item['jumlah']);
+                }
+            }
+        }
 
         return redirect()->route(auth()->user()->role . '.rekam-medis.index')
-            ->with('success', 'Rekam medis berhasil diupdate!');
+            ->with('success', 'Rekam medis dan resep berhasil diperbarui!');
     }
 
     /**
@@ -111,10 +183,18 @@ class RekamMedisController extends Controller
      */
     public function destroy(RekamMedis $rekamMedi)
     {
+        // Kembalikan stok obat sebelum dihapus
+        foreach ($rekamMedi->reseps as $resep) {
+            $obat = Obat::find($resep->obat_id);
+            if ($obat) {
+                $obat->increment('stok', $resep->jumlah);
+            }
+        }
+
         $rekamMedi->delete();
 
         return redirect()->route(auth()->user()->role . '.rekam-medis.index')
-            ->with('success', 'Rekam medis berhasil dihapus!');
+            ->with('success', 'Rekam medis berhasil dihapus dan stok dikembalikan!');
     }
 
     /**

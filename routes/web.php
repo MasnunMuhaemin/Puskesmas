@@ -8,6 +8,7 @@ use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\RekamMedisController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ObatController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
@@ -38,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('pasien', PasienController::class);
         Route::resource('pendaftaran', PendaftaranController::class);
         Route::resource('rekam-medis', RekamMedisController::class);
+        Route::resource('obat', ObatController::class);
     });
 
     // Petugas Dashboard

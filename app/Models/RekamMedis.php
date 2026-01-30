@@ -22,4 +22,9 @@ class RekamMedis extends Model
     public function dokter() {
         return $this->belongsTo(Dokter::class);
     }
+
+    public function reseps()
+    {
+        return $this->hasMany(Resep::class);
+    }
 }
