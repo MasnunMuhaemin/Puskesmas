@@ -7,7 +7,7 @@
     <div class="flex items-center justify-between">
         <div>
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Daftar Pengguna</h1>
-            <p class="text-gray-600 dark:text-gray-400">Kelola semua akun (Admin, Petugas, Dokter, dan Pasien).</p>
+            <p class="text-gray-600 dark:text-white">Kelola semua akun (Admin, Petugas, Dokter, dan Pasien).</p>
         </div>
         <a href="{{ route('admin.users.create') }}" class="px-5 py-2.5 bg-primary text-white font-bold rounded-xl shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all flex items-center">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -57,15 +57,15 @@
                         </td>
                         <td class="px-6 py-4">
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold capitalize
-                                {{ $user->role === 'admin' ? 'bg-purple-100 text-purple-700' : '' }}
-                                {{ $user->role === 'petugas' ? 'bg-blue-100 text-blue-700' : '' }}
-                                {{ $user->role === 'dokter' ? 'bg-green-100 text-green-700' : '' }}
-                                {{ $user->role === 'pasien' ? 'bg-gray-100 text-gray-700' : '' }}
+                                {{ $user->role === 'admin' ? 'bg-purple-100 text-purple-700 dark:bg-purple-500/20 dark:text-purple-300' : '' }}
+                                {{ $user->role === 'petugas' ? 'bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300' : '' }}
+                                {{ $user->role === 'dokter' ? 'bg-green-100 text-green-700 dark:bg-green-500/20 dark:text-green-300' : '' }}
+                                {{ $user->role === 'pasien' ? 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300' : '' }}
                             ">
                                 {{ $user->role }}
                             </span>
                         </td>
-                        <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">
+                        <td class="px-6 py-4 text-sm text-gray-600 dark:text-white">
                             {{ $user->nik ?? '-' }}
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-500">

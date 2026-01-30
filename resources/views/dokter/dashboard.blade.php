@@ -7,7 +7,7 @@
     <div class="flex items-center justify-between">
         <div>
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Dokter Dashboard</h1>
-            <p class="text-gray-600 dark:text-gray-400">Selamat datang kembali, dok! {{ Auth::user()->name }}!</p>
+            <p class="text-gray-600 dark:text-white">Selamat datang kembali, dok! {{ Auth::user()->name }}!</p>
         </div>
     </div>
 
@@ -37,7 +37,7 @@
     </div>
     @else
     <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-sm border-2 border-dashed border-gray-200 dark:border-gray-700 text-center">
-        <p class="text-gray-500 font-medium">Belum ada antrian pasien saat ini.</p>
+        <p class="text-gray-500 dark:text-white font-medium">Belum ada antrian pasien saat ini.</p>
     </div>
     @endif
 
@@ -58,14 +58,14 @@
                                 </div>
                                 <div>
                                     <p class="text-sm font-bold text-gray-900 dark:text-white">{{ $item->pasien->nama }}</p>
-                                    <p class="text-xs text-gray-500">Keluhan: {{ $item->status }}</p>
+                                    <p class="text-xs text-gray-500 dark:text-white">Keluhan: {{ $item->status }}</p>
                                 </div>
                             </div>
                             <a href="{{ route('dokter.rekam-medis.create', ['pasien_id' => $item->pasien_id]) }}" class="text-primary font-bold text-sm hover:underline">Periksa</a>
                         </div>
                     </li>
                     @empty
-                    <li class="p-12 text-center text-gray-500 italic">Antrian kosong.</li>
+                    <li class="p-12 text-center text-gray-500 dark:text-white italic">Antrian kosong.</li>
                     @endforelse
                 </ul>
             </div>
@@ -76,11 +76,11 @@
                 <h2 class="font-bold text-gray-900 dark:text-white mb-4">Statistik Saya</h2>
                 <div class="space-y-4">
                     <div class="p-4 bg-primary/5 rounded-2xl">
-                        <p class="text-xs text-gray-500 uppercase font-bold tracking-wider mb-1">Periksa Hari Ini</p>
+                        <p class="text-xs text-gray-500 dark:text-white uppercase font-bold tracking-wider mb-1">Periksa Hari Ini</p>
                         <p class="text-3xl font-black text-primary">{{ $pemeriksaanHariIni }}</p>
                     </div>
                     <div class="p-4 bg-gray-50 dark:bg-gray-900 rounded-2xl">
-                        <p class="text-xs text-gray-500 uppercase font-bold tracking-wider mb-1">Total Riwayat Periksa</p>
+                        <p class="text-xs text-gray-500 dark:text-white uppercase font-bold tracking-wider mb-1">Total Riwayat Periksa</p>
                         <p class="text-3xl font-black text-gray-900 dark:text-white">{{ $totalPemeriksaan }}</p>
                     </div>
                 </div>

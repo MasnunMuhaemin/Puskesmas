@@ -7,7 +7,7 @@
     <div class="flex items-center justify-between">
         <div>
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Riwayat Rekam Medis</h1>
-            <p class="text-gray-600 dark:text-gray-400">Daftar pemeriksaan pasien seluruh poli.</p>
+            <p class="text-gray-600 dark:text-white">Daftar pemeriksaan pasien seluruh poli.</p>
         </div>
         @if(Auth::user()->role === 'dokter')
         <a href="{{ route('dokter.rekam-medis.create') }}" class="px-4 py-2 bg-primary text-white rounded-xl font-semibold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all flex items-center">
@@ -45,10 +45,10 @@
                                 <span class="text-xs text-gray-500">NIK: {{ $item->pasien->nik }}</span>
                             </div>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-300">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-white">
                             {{ $item->dokter->nama }}
                         </td>
-                        <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-300 truncate max-w-xs">
+                        <td class="px-6 py-4 text-sm text-gray-600 dark:text-white truncate max-w-xs">
                             {{ $item->keluhan }}
                         </td>
                         <td class="px-6 py-4 text-sm font-medium text-primary">
@@ -56,7 +56,7 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <div class="flex items-center space-x-3">
-                                <a href="{{ route('rekam-medis.print', $item->id) }}" class="text-gray-600 hover:text-gray-900">
+                                <a href="{{ route('rekam-medis.print', $item->id) }}" class="text-gray-600 dark:text-white hover:text-gray-900 dark:text-white">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
                                     </svg>

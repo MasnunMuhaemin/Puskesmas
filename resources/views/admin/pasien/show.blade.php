@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="flex space-x-3">
-            <a href="{{ route(Auth::user()->role . '.pasien.edit', $pasien->id) }}" class="px-5 py-2.5 bg-white border border-gray-200 text-gray-700 font-bold rounded-xl hover:bg-gray-50 transition-all">
+            <a href="{{ route(Auth::user()->role . '.pasien.edit', $pasien->id) }}" class="px-5 py-2.5 bg-white border border-gray-200 text-gray-700 dark:text-white font-bold rounded-xl hover:bg-gray-50 transition-all">
                 Edit Profil
             </a>
             <a href="{{ route(Auth::user()->role . '.pasien.index') }}" class="px-5 py-2.5 bg-gray-900 text-white font-bold rounded-xl hover:bg-black transition-all">
@@ -44,7 +44,7 @@
                     </div>
                     <div class="pt-4 border-t border-gray-100 dark:border-gray-700">
                         <p class="text-gray-400 mb-1">Terdaftar Sejak</p>
-                        <p class="font-medium text-gray-600 dark:text-gray-400">{{ $pasien->created_at->format('d/m/Y H:i') }}</p>
+                        <p class="font-medium text-gray-600 dark:text-white">{{ $pasien->created_at->format('d/m/Y H:i') }}</p>
                     </div>
                 </div>
             </div>
@@ -80,10 +80,10 @@
                             <span class="text-xs text-gray-400">{{ \Carbon\Carbon::parse($rekam->tanggal_periksa)->format('d/m/Y') }}</span>
                         </div>
                         <h4 class="font-bold text-gray-900 dark:text-white mb-1">{{ $rekam->diagnosa }}</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">{{ $rekam->keluhan }}</p>
+                        <p class="text-sm text-gray-600 dark:text-white mb-4">{{ $rekam->keluhan }}</p>
                         <div class="flex items-center text-xs text-gray-500">
-                            <div class="w-6 h-6 rounded-full bg-gray-200 mr-2 flex items-center justify-center font-bold text-[8px] text-gray-600">DR</div>
-                            Dokter Pemeriksa: <span class="font-bold ml-1 text-gray-700">{{ $rekam->dokter->nama }}</span>
+                            <div class="w-6 h-6 rounded-full bg-gray-200 mr-2 flex items-center justify-center font-bold text-[8px] text-gray-600 dark:text-white">DR</div>
+                            Dokter Pemeriksa: <span class="font-bold ml-1 text-gray-700 dark:text-white">{{ $rekam->dokter->nama }}</span>
                         </div>
                     </div>
                     @empty

@@ -7,7 +7,7 @@
     <div class="flex items-center justify-between">
         <div>
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Data Pasien</h1>
-            <p class="text-gray-600 dark:text-gray-400">Total Pasien Terdaftar: {{ $pasiens->total() }}</p>
+            <p class="text-gray-600 dark:text-white">Total Pasien Terdaftar: {{ $pasiens->total() }}</p>
         </div>
         <a href="{{ route(Auth::user()->role . '.pasien.create') }}" class="px-4 py-2 bg-primary text-white rounded-xl font-semibold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all flex items-center">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,9 +55,9 @@
                     @forelse($pasiens as $pasien)
                     <tr class="hover:bg-gray-50 dark:hover:bg-gray-900/40 transition-colors">
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">{{ $pasien->nik }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-300">{{ $pasien->nama }}</td>
-                        <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-300 truncate max-w-xs">{{ $pasien->alamat }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-300">{{ $pasien->tanggal_lahir }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-white">{{ $pasien->nama }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-600 dark:text-white truncate max-w-xs">{{ $pasien->alamat }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-white">{{ $pasien->tanggal_lahir }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <div class="flex items-center space-x-3">
                                 <a href="{{ route(Auth::user()->role . '.pasien.show', $pasien->id) }}" class="text-primary hover:text-primary/80">Detail</a>

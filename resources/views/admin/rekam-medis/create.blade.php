@@ -7,9 +7,9 @@
     <div class="flex items-center justify-between">
         <div>
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Formulir Rekam Medis</h1>
-            <p class="text-gray-600 dark:text-gray-400">Catat detail pemeriksaan, diagnosa, dan tindakan medis.</p>
+            <p class="text-gray-600 dark:text-white">Catat detail pemeriksaan, diagnosa, dan tindakan medis.</p>
         </div>
-        <a href="{{ route(Auth::user()->role . '.rekam-medis.index') }}" class="text-gray-500 hover:text-gray-700 flex items-center font-medium">
+        <a href="{{ route(Auth::user()->role . '.rekam-medis.index') }}" class="text-gray-500 hover:text-gray-700 dark:text-white flex items-center font-medium">
             <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
             </svg>
@@ -39,8 +39,8 @@
                 
                 <div class="space-y-4">
                     <div class="space-y-2">
-                        <label class="text-xs font-bold text-gray-500 uppercase">Pasien</label>
-                        <select name="pasien_id" class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl focus:ring-2 focus:ring-primary transition-all text-sm">
+                        <label class="text-xs font-bold text-gray-500 dark:text-white uppercase">Pasien</label>
+                        <select name="pasien_id" class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl focus:ring-2 focus:ring-primary transition-all text-sm text-gray-900 dark:text-white">
                             <option value="">-- Pilih Pasien --</option>
                             @foreach($pasiens as $pasien)
                                 <option value="{{ $pasien->id }}" {{ (old('pasien_id') == $pasien->id || ($selectedPasien && $selectedPasien->id == $pasien->id)) ? 'selected' : '' }}>
@@ -51,8 +51,8 @@
                     </div>
 
                     <div class="space-y-2">
-                        <label class="text-xs font-bold text-gray-500 uppercase">Dokter Pemeriksa</label>
-                        <select name="dokter_id" class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl focus:ring-2 focus:ring-primary transition-all text-sm">
+                        <label class="text-xs font-bold text-gray-500 dark:text-white uppercase">Dokter Pemeriksa</label>
+                        <select name="dokter_id" class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl focus:ring-2 focus:ring-primary transition-all text-sm text-gray-900 dark:text-white">
                             <option value="">-- Pilih Dokter --</option>
                             @foreach($dokters as $dokter)
                                 <option value="{{ $dokter->id }}" {{ old('dokter_id') == $dokter->id ? 'selected' : '' }}>
@@ -63,9 +63,9 @@
                     </div>
 
                     <div class="space-y-2">
-                        <label class="text-xs font-bold text-gray-500 uppercase">Tanggal Periksa</label>
+                        <label class="text-xs font-bold text-gray-500 dark:text-white uppercase">Tanggal Periksa</label>
                         <input type="date" name="tanggal_periksa" value="{{ old('tanggal_periksa', date('Y-m-d')) }}" 
-                            class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl focus:ring-2 focus:ring-primary transition-all text-sm">
+                            class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl focus:ring-2 focus:ring-primary transition-all text-sm text-gray-900 dark:text-white">
                     </div>
                 </div>
             </div>
@@ -80,21 +80,21 @@
 
                 <div class="space-y-6">
                     <div class="space-y-2">
-                        <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Keluhan Pasien</label>
+                        <label class="text-sm font-bold text-gray-700 dark:text-white">Keluhan Pasien</label>
                         <textarea name="keluhan" rows="3" placeholder="Apa yang dirasakan pasien?" 
-                            class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all shadow-inner" required>{{ old('keluhan') }}</textarea>
+                            class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all shadow-inner text-gray-900 dark:text-white" required>{{ old('keluhan') }}</textarea>
                     </div>
 
                     <div class="space-y-2">
-                        <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Diagnosa Medis</label>
+                        <label class="text-sm font-bold text-gray-700 dark:text-white">Diagnosa Medis</label>
                         <input type="text" name="diagnosa" value="{{ old('diagnosa') }}" placeholder="Penyakit/Diagnosa dasar" 
-                            class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all shadow-inner" required>
+                            class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all shadow-inner text-gray-900 dark:text-white" required>
                     </div>
 
                     <div class="space-y-2">
-                        <label class="text-sm font-bold text-gray-700 dark:text-gray-300">Tindakan / Resep Obat</label>
+                        <label class="text-sm font-bold text-gray-700 dark:text-white">Tindakan / Resep Obat</label>
                         <textarea name="tindakan" rows="4" placeholder="Tindakan medis atau resep yang diberikan..." 
-                            class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all shadow-inner" required>{{ old('tindakan') }}</textarea>
+                            class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all shadow-inner text-gray-900 dark:text-white" required>{{ old('tindakan') }}</textarea>
                     </div>
                 </div>
 

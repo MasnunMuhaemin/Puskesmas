@@ -7,9 +7,9 @@
     <div class="flex items-center justify-between">
         <div>
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Edit Unit Poli</h1>
-            <p class="text-gray-600 dark:text-gray-400">Pembaruan data untuk unit poliklinik.</p>
+            <p class="text-gray-600 dark:text-white">Pembaruan data untuk unit poliklinik.</p>
         </div>
-        <a href="{{ route('admin.poli.index') }}" class="text-gray-500 hover:text-gray-700 flex items-center font-medium">
+        <a href="{{ route('admin.poli.index') }}" class="text-gray-500 hover:text-gray-700 dark:text-white flex items-center font-medium">
             <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
             </svg>
@@ -33,13 +33,13 @@
             @method('PUT')
 
             <div class="space-y-2">
-                <label for="nama_poli" class="text-sm font-bold text-gray-700 dark:text-gray-300">Nama Poliklinik</label>
+                <label for="nama_poli" class="text-sm font-bold text-gray-700 dark:text-white">Nama Poliklinik</label>
                 <input 
                     type="text" 
                     id="nama_poli" 
                     name="nama_poli" 
                     value="{{ old('nama_poli', $poli->nama_poli) }}"
-                    class="block w-full px-4 py-4 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all shadow-inner font-semibold"
+                    class="block w-full px-4 py-4 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all shadow-inner font-semibold text-gray-900 dark:text-white"
                     required
                 >
             </div>

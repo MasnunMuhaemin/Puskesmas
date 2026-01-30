@@ -7,9 +7,9 @@
     <div class="flex items-center justify-between">
         <div>
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Registrasi Pasien Baru</h1>
-            <p class="text-gray-600 dark:text-gray-400">Silakan isi formulir di bawah ini dengan lengkap.</p>
+            <p class="text-gray-600 dark:text-white">Silakan isi formulir di bawah ini dengan lengkap.</p>
         </div>
-        <a href="{{ route(Auth::user()->role . '.pasien.index') }}" class="text-gray-500 hover:text-gray-700 flex items-center font-medium">
+        <a href="{{ route(Auth::user()->role . '.pasien.index') }}" class="text-gray-500 hover:text-gray-700 dark:text-white flex items-center font-medium">
             <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
             </svg>
@@ -44,7 +44,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- NIK Field -->
                 <div class="space-y-2">
-                    <label for="nik" class="text-sm font-bold text-gray-700 dark:text-gray-300">Nomor Induk Kependudukan (NIK)</label>
+                    <label for="nik" class="text-sm font-bold text-gray-700 dark:text-white">Nomor Induk Kependudukan (NIK)</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                             <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,7 +58,7 @@
                             value="{{ old('nik') }}"
                             placeholder="16 Digit NIK"
                             maxlength="16"
-                            class="block w-full pl-12 pr-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all"
+                            class="block w-full pl-12 pr-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all text-gray-900 dark:text-white"
                             required
                         >
                     </div>
@@ -66,7 +66,7 @@
 
                 <!-- Nama Lengkap -->
                 <div class="space-y-2">
-                    <label for="nama" class="text-sm font-bold text-gray-700 dark:text-gray-300">Nama Lengkap Pasien</label>
+                    <label for="nama" class="text-sm font-bold text-gray-700 dark:text-white">Nama Lengkap Pasien</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                             <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,7 +79,7 @@
                             name="nama" 
                             value="{{ old('nama') }}"
                             placeholder="Masukkan nama sesuai KTP"
-                            class="block w-full pl-12 pr-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all"
+                            class="block w-full pl-12 pr-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all text-gray-900 dark:text-white"
                             required
                         >
                     </div>
@@ -87,7 +87,7 @@
 
                 <!-- Tanggal Lahir -->
                 <div class="space-y-2">
-                    <label for="tanggal_lahir" class="text-sm font-bold text-gray-700 dark:text-gray-300">Tanggal Lahir</label>
+                    <label for="tanggal_lahir" class="text-sm font-bold text-gray-700 dark:text-white">Tanggal Lahir</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                             <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -99,7 +99,7 @@
                             id="tanggal_lahir" 
                             name="tanggal_lahir" 
                             value="{{ old('tanggal_lahir') }}"
-                            class="block w-full pl-12 pr-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all"
+                            class="block w-full pl-12 pr-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all text-gray-900 dark:text-white"
                             required
                         >
                     </div>
@@ -107,13 +107,13 @@
 
                 <!-- Alamat Section (Full Width) -->
                 <div class="md:col-span-2 space-y-2">
-                    <label for="alamat" class="text-sm font-bold text-gray-700 dark:text-gray-300">Alamat Lengkap</label>
+                    <label for="alamat" class="text-sm font-bold text-gray-700 dark:text-white">Alamat Lengkap</label>
                     <textarea 
                         id="alamat" 
                         name="alamat" 
                         rows="3" 
                         placeholder="Masukkan alamat lengkap RT/RW, Kecamatan, Kota"
-                        class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all"
+                        class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all text-gray-900 dark:text-white"
                         required
                     >{{ old('alamat') }}</textarea>
                 </div>
@@ -121,7 +121,7 @@
 
             <!-- Action Buttons -->
             <div class="flex items-center justify-end space-x-4 pt-6 border-t border-gray-100 dark:border-gray-700">
-                <button type="reset" class="px-6 py-3 text-sm font-bold text-gray-500 hover:text-gray-700 transition-all">
+                <button type="reset" class="px-6 py-3 text-sm font-bold text-gray-500 hover:text-gray-700 dark:text-white transition-all">
                     Reset Form
                 </button>
                 <button type="submit" class="px-8 py-3 bg-primary text-white font-bold rounded-2xl shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all transform hover:-translate-y-0.5">

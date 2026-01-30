@@ -9,8 +9,16 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-primary/10 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 font-sans antialiased">
-    <div class="min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
         <div class="w-full max-w-md">
+            <!-- Back Button -->
+            <a href="{{ route('home') }}" class="inline-flex items-center text-sm font-semibold text-gray-600 dark:text-white hover:text-primary transition-colors mb-8 group">
+                <svg class="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Kembali ke Beranda
+            </a>
+
             <!-- Logo & Header -->
             <div class="text-center mb-8">
                 <div class="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-2xl mb-4 shadow-lg">
@@ -19,7 +27,7 @@
                     </svg>
                 </div>
                 <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Registrasi Pasien</h1>
-                <p class="text-gray-600 dark:text-gray-400">Buat akun untuk melihat riwayat medis Anda</p>
+                <p class="text-gray-600 dark:text-white">Buat akun untuk melihat riwayat medis Anda</p>
             </div>
 
             <!-- Register Card -->
@@ -45,7 +53,7 @@
 
                     <!-- NIK Field -->
                     <div>
-                        <label for="nik" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <label for="nik" class="block text-sm font-semibold text-gray-700 dark:text-white mb-2">
                             Nomor Induk Kependudukan (NIK)
                         </label>
                         <div class="relative">
@@ -61,7 +69,7 @@
                                 value="{{ old('nik') }}"
                                 required
                                 maxlength="16"
-                                class="block w-full pl-12 pr-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 font-mono tracking-wider"
+                                class="block w-full pl-12 pr-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 font-mono tracking-wider text-gray-900 dark:text-white"
                                 placeholder="16 Digit NIK Sesuai KTP"
                             >
                         </div>
@@ -70,7 +78,7 @@
 
                     <!-- Name Field -->
                     <div>
-                        <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-white mb-2">
                             Nama Lengkap
                         </label>
                         <div class="relative">
@@ -87,7 +95,7 @@
                                 required 
                                 autofocus
                                 autocomplete="name"
-                                class="block w-full pl-12 pr-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
+                                class="block w-full pl-12 pr-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white"
                                 placeholder="Nama Lengkap Anda"
                             >
                         </div>
@@ -95,7 +103,7 @@
 
                     <!-- Email Field -->
                     <div>
-                        <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-white mb-2">
                             Email
                         </label>
                         <div class="relative">
@@ -111,15 +119,15 @@
                                 value="{{ old('email') }}"
                                 required
                                 autocomplete="username"
-                                class="block w-full pl-12 pr-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
+                                class="block w-full pl-12 pr-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white"
                                 placeholder="nama@email.com"
                             >
                         </div>
                     </div>
 
                     <!-- Password Field -->
-                    <div>
-                        <label for="password" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    <div x-data="{ show: false }">
+                        <label for="password" class="block text-sm font-semibold text-gray-700 dark:text-white mb-2">
                             Password
                         </label>
                         <div class="relative">
@@ -130,19 +138,33 @@
                             </div>
                             <input 
                                 id="password" 
-                                type="password" 
+                                type="password"
+                                :type="show ? 'text' : 'password'" 
                                 name="password" 
                                 required
                                 autocomplete="new-password"
-                                class="block w-full pl-12 pr-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
+                                class="block w-full pl-12 pr-12 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white"
                                 placeholder="Minimal 8 karakter"
                             >
+                            <button 
+                                type="button" 
+                                @click="show = !show"
+                                class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-primary transition-colors"
+                            >
+                                <svg x-show="!show" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                </svg>
+                                <svg x-show="show" x-cloak class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.97 9.97 0 011.563-3.04m4.066-1.56A10.848 10.848 0 0112 5c4.478 0 8.268 2.943 9.542 7a9.97 9.97 0 01-1.563 3.04m-4.5-4.5a3 3 0 11-4.243-4.243m4.242 4.242L9.88 9.88"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
 
                     <!-- Password Confirmation Field -->
-                    <div>
-                        <label for="password_confirmation" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    <div x-data="{ show: false }">
+                        <label for="password_confirmation" class="block text-sm font-semibold text-gray-700 dark:text-white mb-2">
                             Konfirmasi Password
                         </label>
                         <div class="relative">
@@ -153,13 +175,27 @@
                             </div>
                             <input 
                                 id="password_confirmation" 
-                                type="password" 
+                                type="password"
+                                :type="show ? 'text' : 'password'" 
                                 name="password_confirmation" 
                                 required
                                 autocomplete="new-password"
-                                class="block w-full pl-12 pr-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
+                                class="block w-full pl-12 pr-12 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white"
                                 placeholder="Ulangi password"
                             >
+                            <button 
+                                type="button" 
+                                @click="show = !show"
+                                class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-primary transition-colors"
+                            >
+                                <svg x-show="!show" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                </svg>
+                                <svg x-show="show" x-cloak class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.97 9.97 0 011.563-3.04m4.066-1.56A10.848 10.848 0 0112 5c4.478 0 8.268 2.943 9.542 7a9.97 9.97 0 01-1.563 3.04m-4.5-4.5a3 3 0 11-4.243-4.243m4.242 4.242L9.88 9.88"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
 
@@ -177,7 +213,7 @@
 
                 <!-- Login Link -->
                 <div class="text-center mt-8">
-                    <p class="text-gray-600 dark:text-gray-400">
+                    <p class="text-gray-600 dark:text-white">
                         Sudah punya akun?
                         <a href="{{ route('login') }}" class="font-semibold text-primary hover:text-primary/80 transition-colors ml-1">
                             Login di sini
@@ -187,7 +223,7 @@
             </div>
 
             <!-- Footer -->
-            <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-8">
+            <p class="text-center text-sm text-gray-500 dark:text-white mt-8">
                 © {{ date('Y') }} {{ config('app.name', 'Puskesmas') }}. All rights reserved.
             </p>
         </div>

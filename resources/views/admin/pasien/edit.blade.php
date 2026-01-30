@@ -7,9 +7,9 @@
     <div class="flex items-center justify-between">
         <div>
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Edit Data Pasien</h1>
-            <p class="text-gray-600 dark:text-gray-400">Pembaruan data untuk: <strong>{{ $pasien->nama }}</strong></p>
+            <p class="text-gray-600 dark:text-white">Pembaruan data untuk: <strong>{{ $pasien->nama }}</strong></p>
         </div>
-        <a href="{{ route(Auth::user()->role . '.pasien.index') }}" class="text-gray-500 hover:text-gray-700 flex items-center font-medium">
+        <a href="{{ route(Auth::user()->role . '.pasien.index') }}" class="text-gray-500 hover:text-gray-700 dark:text-white flex items-center font-medium">
             <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
             </svg>
@@ -45,52 +45,52 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- NIK Field (Read Only or Informational if NIK shouldn't change, but here allowed with validation) -->
                 <div class="space-y-2">
-                    <label for="nik" class="text-sm font-bold text-gray-700 dark:text-gray-300">NIK (Nomor Induk Kependudukan)</label>
+                    <label for="nik" class="text-sm font-bold text-gray-700 dark:text-white">NIK (Nomor Induk Kependudukan)</label>
                     <input 
                         type="text" 
                         id="nik" 
                         name="nik" 
                         value="{{ old('nik', $pasien->nik) }}"
                         maxlength="16"
-                        class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all shadow-inner"
+                        class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all shadow-inner text-gray-900 dark:text-white"
                         required
                     >
                 </div>
 
                 <!-- Nama Lengkap -->
                 <div class="space-y-2">
-                    <label for="nama" class="text-sm font-bold text-gray-700 dark:text-gray-300">Nama Lengkap</label>
+                    <label for="nama" class="text-sm font-bold text-gray-700 dark:text-white">Nama Lengkap</label>
                     <input 
                         type="text" 
                         id="nama" 
                         name="nama" 
                         value="{{ old('nama', $pasien->nama) }}"
-                        class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all shadow-inner"
+                        class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all shadow-inner text-gray-900 dark:text-white"
                         required
                     >
                 </div>
 
                 <!-- Tanggal Lahir -->
                 <div class="space-y-2">
-                    <label for="tanggal_lahir" class="text-sm font-bold text-gray-700 dark:text-gray-300">Tanggal Lahir</label>
+                    <label for="tanggal_lahir" class="text-sm font-bold text-gray-700 dark:text-white">Tanggal Lahir</label>
                     <input 
                         type="date" 
                         id="tanggal_lahir" 
                         name="tanggal_lahir" 
                         value="{{ old('tanggal_lahir', $pasien->tanggal_lahir) }}"
-                        class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all shadow-inner"
+                        class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all shadow-inner text-gray-900 dark:text-white"
                         required
                     >
                 </div>
 
                 <!-- Alamat Section -->
                 <div class="md:col-span-2 space-y-2">
-                    <label for="alamat" class="text-sm font-bold text-gray-700 dark:text-gray-300">Alamat Lengkap</label>
+                    <label for="alamat" class="text-sm font-bold text-gray-700 dark:text-white">Alamat Lengkap</label>
                     <textarea 
                         id="alamat" 
                         name="alamat" 
                         rows="3" 
-                        class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all shadow-inner"
+                        class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all shadow-inner text-gray-900 dark:text-white"
                         required
                     >{{ old('alamat', $pasien->alamat) }}</textarea>
                 </div>

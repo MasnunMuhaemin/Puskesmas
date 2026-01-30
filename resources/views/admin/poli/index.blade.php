@@ -7,7 +7,7 @@
     <div class="flex items-center justify-between">
         <div>
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Daftar Poli</h1>
-            <p class="text-gray-600 dark:text-gray-400">Kelola unit layanan poliklinik.</p>
+            <p class="text-gray-600 dark:text-white">Kelola unit layanan poliklinik.</p>
         </div>
         <a href="{{ route('admin.poli.create') }}" class="px-4 py-2 bg-primary text-white rounded-xl font-semibold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all flex items-center">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

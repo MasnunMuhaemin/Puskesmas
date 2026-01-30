@@ -7,9 +7,9 @@
     <div class="flex items-center justify-between">
         <div>
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Pendaftaran Antrian Baru</h1>
-            <p class="text-gray-600 dark:text-gray-400">Daftarkan pasien ke poli tujuan hari ini.</p>
+            <p class="text-gray-600 dark:text-white">Daftarkan pasien ke poli tujuan hari ini.</p>
         </div>
-        <a href="{{ route(Auth::user()->role . '.pendaftaran.index') }}" class="text-gray-500 hover:text-gray-700 flex items-center font-medium">
+        <a href="{{ route(Auth::user()->role . '.pendaftaran.index') }}" class="text-gray-500 hover:text-gray-700 dark:text-white flex items-center font-medium">
             <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
             </svg>
@@ -41,7 +41,7 @@
                         name="pasien_id" 
                         id="pasien_id" 
                         required
-                        class="block w-full px-4 py-4 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all appearance-none"
+                        class="block w-full px-4 py-4 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary transition-all appearance-none text-gray-900 dark:text-white"
                     >
                         <option value="">-- Pilih Pasien Terdaftar --</option>
                         @foreach($pasiens as $pasien)
@@ -68,7 +68,7 @@
                         <label class="relative flex items-center p-4 cursor-pointer bg-gray-50 dark:bg-gray-900 rounded-2xl border-2 border-transparent has-[:checked]:border-primary has-[:checked]:bg-primary/5 transition-all group">
                             <input type="radio" name="poli_id" value="{{ $poli->id }}" class="hidden" {{ old('poli_id') == $poli->id ? 'selected' : '' }} required>
                             <div class="flex items-center justify-between w-full">
-                                <span class="font-bold text-gray-700 dark:text-gray-300 group-has-[:checked]:text-primary">{{ $poli->nama_poli }}</span>
+                                <span class="font-bold text-gray-700 dark:text-white group-has-[:checked]:text-primary">{{ $poli->nama_poli }}</span>
                                 <div class="w-5 h-5 rounded-full border-2 border-gray-300 group-has-[:checked]:border-primary group-has-[:checked]:bg-primary flex items-center justify-center">
                                     <div class="w-2 h-2 bg-white rounded-full"></div>
                                 </div>
@@ -85,14 +85,14 @@
                     </h3>
                     
                     <div class="space-y-2">
-                        <label class="text-xs font-bold text-gray-500 uppercase">Tanggal Daftar</label>
+                        <label class="text-xs font-bold text-gray-500 dark:text-white uppercase">Tanggal Daftar</label>
                         <input type="date" name="tanggal_daftar" value="{{ old('tanggal_daftar', date('Y-m-d')) }}" 
-                            class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl focus:ring-2 focus:ring-primary transition-all">
+                            class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl focus:ring-2 focus:ring-primary transition-all text-gray-900 dark:text-white">
                     </div>
 
                     <div class="space-y-2">
-                        <label class="text-xs font-bold text-gray-500 uppercase">Status Awal</label>
-                        <select name="status" class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl focus:ring-2 focus:ring-primary transition-all">
+                        <label class="text-xs font-bold text-gray-500 dark:text-white uppercase">Status Awal</label>
+                        <select name="status" class="block w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl focus:ring-2 focus:ring-primary transition-all text-gray-900 dark:text-white">
                             <option value="menunggu">Menunggu (Antrian)</option>
                             <option value="selesai">Selesai (Langsung Periksa)</option>
                         </select>

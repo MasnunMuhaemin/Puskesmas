@@ -7,7 +7,7 @@
     <div class="flex items-center justify-between">
         <div>
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Admin Dashboard</h1>
-            <p class="text-gray-600 dark:text-gray-400">Selamat datang kembali, {{ Auth::user()->name }}!</p>
+            <p class="text-gray-600 dark:text-white">Selamat datang kembali, {{ Auth::user()->name }}!</p>
         </div>
     </div>
 
@@ -22,7 +22,7 @@
                 </div>
                 <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded-lg">Target: 100</span>
             </div>
-            <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium">Total Pasien</h3>
+            <h3 class="text-gray-500 dark:text-white text-sm font-medium">Total Pasien</h3>
             <p class="text-2xl font-bold text-gray-900 dark:text-white mt-1">{{ $totalPasien ?? 0 }}</p>
         </div>
 
@@ -34,7 +34,7 @@
                     </svg>
                 </div>
             </div>
-            <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium">Total Dokter</h3>
+            <h3 class="text-gray-500 dark:text-white text-sm font-medium">Total Dokter</h3>
             <p class="text-2xl font-bold text-gray-900 dark:text-white mt-1">{{ $totalDokter ?? 0 }}</p>
         </div>
 
@@ -46,7 +46,7 @@
                     </svg>
                 </div>
             </div>
-            <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium">Total Poli</h3>
+            <h3 class="text-gray-500 dark:text-white text-sm font-medium">Total Poli</h3>
             <p class="text-2xl font-bold text-gray-900 dark:text-white mt-1">{{ $totalPoli ?? 0 }}</p>
         </div>
 
@@ -58,7 +58,7 @@
                     </svg>
                 </div>
             </div>
-            <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium">Pemeriksaan Selesai</h3>
+            <h3 class="text-gray-500 dark:text-white text-sm font-medium">Pemeriksaan Selesai</h3>
             <p class="text-2xl font-bold text-gray-900 dark:text-white mt-1">{{ $statusPendaftaran['selesai'] ?? 0 }}</p>
         </div>
     </div>

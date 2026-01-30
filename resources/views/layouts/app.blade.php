@@ -23,7 +23,10 @@
                 <!-- Logo -->
                 <div class="p-6 flex items-center justify-between">
                     <div class="flex items-center space-x-3" x-show="sidebarOpen">
-                        <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold">P</div>
+                        <svg class="w-9 h-9" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="44" height="44" rx="12" fill="#309898" />
+                            <path d="M22 12V32M12 22H32" stroke="white" stroke-width="4.5" stroke-linecap="round"/>
+                        </svg>
                         <span class="text-xl font-bold text-gray-900 dark:text-white">Puskesmas</span>
                     </div>
                 </div>
@@ -32,7 +35,7 @@
                 <nav class="flex-1 px-4 py-4 space-y-1">
                     <!-- Dashboard (All Roles) -->
                     <a href="{{ route(Auth::user()->role . '.dashboard') }}" 
-                       class="flex items-center px-4 py-3 {{ request()->routeIs(Auth::user()->role . '.dashboard') ? 'text-primary bg-primary/10' : 'text-gray-600 dark:text-gray-400 hover:text-primary hover:bg-primary/5' }} rounded-xl font-medium transition-all group">
+                       class="flex items-center px-4 py-3 {{ request()->routeIs(Auth::user()->role . '.dashboard') ? 'text-primary bg-primary/10' : 'text-gray-600 dark:text-white hover:text-primary hover:bg-primary/5' }} rounded-xl font-medium transition-all group">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                         </svg>
@@ -41,19 +44,19 @@
                     
                     <!-- Admin Specific -->
                     @if(Auth::user()->role === 'admin')
-                    <a href="{{ route('admin.users.index') }}" class="flex items-center px-4 py-3 {{ request()->routeIs('admin.users.*') ? 'text-primary bg-primary/10' : 'text-gray-600 dark:text-gray-400 hover:text-primary hover:bg-primary/5' }} rounded-xl font-medium transition-all group">
+                    <a href="{{ route('admin.users.index') }}" class="flex items-center px-4 py-3 {{ request()->routeIs('admin.users.*') ? 'text-primary bg-primary/10' : 'text-gray-600 dark:text-white hover:text-primary hover:bg-primary/5' }} rounded-xl font-medium transition-all group">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
                         </svg>
                         <span x-show="sidebarOpen">Kelola User</span>
                     </a>
-                    <a href="{{ route('admin.poli.index') }}" class="flex items-center px-4 py-3 {{ request()->routeIs('admin.poli.*') ? 'text-primary bg-primary/10' : 'text-gray-600 dark:text-gray-400 hover:text-primary hover:bg-primary/5' }} rounded-xl transition-all group">
+                    <a href="{{ route('admin.poli.index') }}" class="flex items-center px-4 py-3 {{ request()->routeIs('admin.poli.*') ? 'text-primary bg-primary/10' : 'text-gray-600 dark:text-white hover:text-primary hover:bg-primary/5' }} rounded-xl transition-all group">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                         </svg>
                         <span x-show="sidebarOpen">Manajemen Poli</span>
                     </a>
-                    <a href="{{ route('admin.dokter.index') }}" class="flex items-center px-4 py-3 {{ request()->routeIs('admin.dokter.*') ? 'text-primary bg-primary/10' : 'text-gray-600 dark:text-gray-400 hover:text-primary hover:bg-primary/5' }} rounded-xl transition-all group">
+                    <a href="{{ route('admin.dokter.index') }}" class="flex items-center px-4 py-3 {{ request()->routeIs('admin.dokter.*') ? 'text-primary bg-primary/10' : 'text-gray-600 dark:text-white hover:text-primary hover:bg-primary/5' }} rounded-xl transition-all group">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                         </svg>
@@ -63,13 +66,13 @@
 
                     <!-- Petugas & Admin -->
                     @if(Auth::user()->role === 'admin' || Auth::user()->role === 'petugas')
-                    <a href="{{ route(Auth::user()->role . '.pasien.index') }}" class="flex items-center px-4 py-3 {{ request()->routeIs('*.pasien.*') ? 'text-primary bg-primary/10' : 'text-gray-600 dark:text-gray-400 hover:text-primary hover:bg-primary/5' }} rounded-xl transition-all group">
+                    <a href="{{ route(Auth::user()->role . '.pasien.index') }}" class="flex items-center px-4 py-3 {{ request()->routeIs('*.pasien.*') ? 'text-primary bg-primary/10' : 'text-gray-600 dark:text-white hover:text-primary hover:bg-primary/5' }} rounded-xl transition-all group">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                         </svg>
                         <span x-show="sidebarOpen">Data Pasien</span>
                     </a>
-                    <a href="{{ route(Auth::user()->role . '.pendaftaran.index') }}" class="flex items-center px-4 py-3 {{ request()->routeIs('*.pendaftaran.*') ? 'text-primary bg-primary/10' : 'text-gray-600 dark:text-gray-400 hover:text-primary hover:bg-primary/5' }} rounded-xl transition-all group">
+                    <a href="{{ route(Auth::user()->role . '.pendaftaran.index') }}" class="flex items-center px-4 py-3 {{ request()->routeIs('*.pendaftaran.*') ? 'text-primary bg-primary/10' : 'text-gray-600 dark:text-white hover:text-primary hover:bg-primary/5' }} rounded-xl transition-all group">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
                         </svg>
@@ -79,7 +82,7 @@
 
                     <!-- Dokter & Admin -->
                     @if(Auth::user()->role === 'admin' || Auth::user()->role === 'dokter')
-                    <a href="{{ route(Auth::user()->role . '.rekam-medis.index') }}" class="flex items-center px-4 py-3 {{ request()->routeIs('*.rekam-medis.*') ? 'text-primary bg-primary/10' : 'text-gray-600 dark:text-gray-400 hover:text-primary hover:bg-primary/5' }} rounded-xl transition-all group">
+                    <a href="{{ route(Auth::user()->role . '.rekam-medis.index') }}" class="flex items-center px-4 py-3 {{ request()->routeIs('*.rekam-medis.*') ? 'text-primary bg-primary/10' : 'text-gray-600 dark:text-white hover:text-primary hover:bg-primary/5' }} rounded-xl transition-all group">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                         </svg>
@@ -131,14 +134,14 @@
             <header class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4 sticky top-0 z-10 flex items-center justify-between">
                 <div class="flex items-center">
                     <button @click="sidebarOpen = !sidebarOpen" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all mr-4">
-                        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-6 h-6 text-gray-600 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                         </svg>
                     </button>
                     <h2 class="text-lg font-bold text-gray-900 dark:text-white md:hidden">Puskesmas</h2>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400 hidden sm:block">{{ date('l, d F Y') }}</span>
+                    <span class="text-sm font-medium text-gray-500 dark:text-white hidden sm:block">{{ date('l, d F Y') }}</span>
                 </div>
             </header>
 

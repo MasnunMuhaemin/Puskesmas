@@ -7,7 +7,7 @@
     <div class="flex items-center justify-between">
         <div>
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Petugas Dashboard</h1>
-            <p class="text-gray-600 dark:text-gray-400">Selamat datang kembali, {{ Auth::user()->name }}!</p>
+            <p class="text-gray-600 dark:text-white">Selamat datang kembali, {{ Auth::user()->name }}!</p>
         </div>
         <div class="flex space-x-3">
             <a href="{{ route('petugas.pendaftaran.create') }}" class="px-4 py-2 bg-primary text-white rounded-xl font-semibold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all flex items-center">
@@ -22,15 +22,15 @@
     <!-- Quick Stats -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700">
-            <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium">Antrian Hari Ini</h3>
+            <h3 class="text-gray-500 dark:text-white text-sm font-medium">Antrian Hari Ini</h3>
             <p class="text-3xl font-bold text-gray-900 dark:text-white mt-1">{{ $antrianHariIni }}</p>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700">
-            <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium">Pasien Menunggu</h3>
+            <h3 class="text-gray-500 dark:text-white text-sm font-medium">Pasien Menunggu</h3>
             <p class="text-3xl font-bold text-orange-500 mt-1">{{ $pasienMenunggu }}</p>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700">
-            <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium">Total Pasien Terdaftar</h3>
+            <h3 class="text-gray-500 dark:text-white text-sm font-medium">Total Pasien Terdaftar</h3>
             <p class="text-3xl font-bold text-primary mt-1">{{ $totalPasien }}</p>
         </div>
     </div>
@@ -80,7 +80,7 @@
                                     </p>
                                 </div>
                                 <div>
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ $p->status == 'menunggu' ? 'bg-orange-100 text-orange-800' : 'bg-green-100 text-green-800' }}">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ $p->status == 'menunggu' ? 'bg-orange-100 text-orange-800 dark:bg-orange-900/40 dark:text-orange-300' : 'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300' }}">
                                         {{ ucfirst($p->status) }}
                                     </span>
                                 </div>
@@ -92,7 +92,7 @@
                     </ul>
                 </div>
                 <div class="mt-6">
-                    <a href="{{ route('petugas.pendaftaran.index') }}" class="w-full flex justify-center items-center px-4 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm font-medium rounded-xl text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 transition-all">
+                    <a href="{{ route('petugas.pendaftaran.index') }}" class="w-full flex justify-center items-center px-4 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm font-medium rounded-xl text-gray-700 dark:text-white dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 transition-all">
                         Lihat Semua Pendaftaran
                     </a>
                 </div>

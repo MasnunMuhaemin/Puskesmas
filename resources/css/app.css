@@ -41,3 +41,7 @@
         color: #309898;
     }
 }
+
+[x-cloak] {
+    display: none !important;
+}
