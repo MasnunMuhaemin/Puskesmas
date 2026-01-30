@@ -11,6 +11,10 @@ class RekamMedis extends Model
         'diagnosa','tindakan','tanggal_periksa'
     ];
 
+    protected $casts = [
+        'tanggal_periksa' => 'date',
+    ];
+
     public function pasien() {
         return $this->belongsTo(Pasien::class);
     }

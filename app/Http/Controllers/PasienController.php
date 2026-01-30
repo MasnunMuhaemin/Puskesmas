@@ -51,7 +51,7 @@ class PasienController extends Controller
 
         Pasien::create($validated);
 
-        return redirect()->route('pasien.index')
+        return redirect()->route(auth()->user()->role . '.pasien.index')
             ->with('success', 'Pasien berhasil didaftarkan!');
     }
 
@@ -60,7 +60,7 @@ class PasienController extends Controller
      */
     public function show(Pasien $pasien)
     {
-        $pasien->load(['pendaftarans', 'rekamMedis.dokter']);
+        $pasien->load(['pendaftarans.poli', 'rekamMedis.dokter']);
         return view('admin.pasien.show', compact('pasien'));
     }
 
@@ -90,7 +90,7 @@ class PasienController extends Controller
 
         $pasien->update($validated);
 
-        return redirect()->route('pasien.index')
+        return redirect()->route(auth()->user()->role . '.pasien.index')
             ->with('success', 'Data pasien berhasil diupdate!');
     }
 
@@ -101,7 +101,7 @@ class PasienController extends Controller
     {
         $pasien->delete();
 
-        return redirect()->route('pasien.index')
+        return redirect()->route(auth()->user()->role . '.pasien.index')
             ->with('success', 'Data pasien berhasil dihapus!');
     }
 

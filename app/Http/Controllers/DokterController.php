@@ -39,7 +39,7 @@ class DokterController extends Controller
 
         Dokter::create($validated);
 
-        return redirect()->route('dokter.index')
+        return redirect()->route('admin.dokter.index')
             ->with('success', 'Dokter berhasil ditambahkan!');
     }
 
@@ -74,7 +74,7 @@ class DokterController extends Controller
 
         $dokter->update($validated);
 
-        return redirect()->route('dokter.index')
+        return redirect()->route('admin.dokter.index')
             ->with('success', 'Data dokter berhasil diupdate!');
     }
 
@@ -85,7 +85,7 @@ class DokterController extends Controller
     {
         $dokter->delete();
 
-        return redirect()->route('dokter.index')
+        return redirect()->route('admin.dokter.index')
             ->with('success', 'Dokter berhasil dihapus!');
     }
 

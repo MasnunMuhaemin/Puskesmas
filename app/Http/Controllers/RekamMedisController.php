@@ -63,7 +63,7 @@ class RekamMedisController extends Controller
 
         RekamMedis::create($validated);
 
-        return redirect()->route('rekam-medis.index')
+        return redirect()->route(auth()->user()->role . '.rekam-medis.index')
             ->with('success', 'Rekam medis berhasil ditambahkan!');
     }
 
@@ -102,7 +102,7 @@ class RekamMedisController extends Controller
 
         $rekamMedi->update($validated);
 
-        return redirect()->route('rekam-medis.index')
+        return redirect()->route(auth()->user()->role . '.rekam-medis.index')
             ->with('success', 'Rekam medis berhasil diupdate!');
     }
 
@@ -113,7 +113,7 @@ class RekamMedisController extends Controller
     {
         $rekamMedi->delete();
 
-        return redirect()->route('rekam-medis.index')
+        return redirect()->route(auth()->user()->role . '.rekam-medis.index')
             ->with('success', 'Rekam medis berhasil dihapus!');
     }
 

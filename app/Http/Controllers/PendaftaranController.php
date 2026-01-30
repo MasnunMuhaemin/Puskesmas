@@ -54,7 +54,7 @@ class PendaftaranController extends Controller
 
         Pendaftaran::create($validated);
 
-        return redirect()->route('pendaftaran.index')
+        return redirect()->route(auth()->user()->role . '.pendaftaran.index')
             ->with('success', 'Pendaftaran berhasil dibuat!');
     }
 
@@ -91,7 +91,7 @@ class PendaftaranController extends Controller
 
         $pendaftaran->update($validated);
 
-        return redirect()->route('pendaftaran.index')
+        return redirect()->route(auth()->user()->role . '.pendaftaran.index')
             ->with('success', 'Pendaftaran berhasil diupdate!');
     }
 
@@ -102,7 +102,7 @@ class PendaftaranController extends Controller
     {
         $pendaftaran->delete();
 
-        return redirect()->route('pendaftaran.index')
+        return redirect()->route(auth()->user()->role . '.pendaftaran.index')
             ->with('success', 'Pendaftaran berhasil dihapus!');
     }
 

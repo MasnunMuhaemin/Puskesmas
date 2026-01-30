@@ -40,6 +40,8 @@ class LoginController extends Controller
                 return redirect()->intended('/petugas/dashboard');
             case 'dokter':
                 return redirect()->intended('/dokter/dashboard');
+            case 'pasien':
+                return redirect()->intended('/pasien/dashboard');
             default:
                 return redirect()->intended('/dashboard');
         }

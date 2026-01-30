@@ -7,6 +7,7 @@ use App\Http\Controllers\DokterController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\RekamMedisController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
@@ -29,8 +30,9 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
     
     // Admin Dashboard & Management
-    Route::middleware(['role:admin'])->prefix('admin')->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::middleware(['role:admin'])->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('users', UserController::class);
         Route::resource('poli', PoliController::class);
         Route::resource('dokter', DokterController::class);
         Route::resource('pasien', PasienController::class);
@@ -39,23 +41,24 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // Petugas Dashboard
-    Route::middleware(['role:petugas'])->prefix('petugas')->group(function () {
-        Route::get('/dashboard', function () {
-            return view('petugas.dashboard');
-        })->name('petugas.dashboard');
+    Route::middleware(['role:petugas'])->prefix('petugas')->name('petugas.')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'petugas'])->name('dashboard');
         Route::resource('pasien', PasienController::class);
         Route::resource('pendaftaran', PendaftaranController::class);
     });
 
     // Dokter Dashboard
-    Route::middleware(['role:dokter'])->prefix('dokter')->group(function () {
-        Route::get('/dashboard', function () {
-            return view('dokter.dashboard');
-        })->name('dokter.dashboard');
+    Route::middleware(['role:dokter'])->prefix('dokter')->name('dokter.')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'dokter'])->name('dashboard');
         Route::resource('rekam-medis', RekamMedisController::class);
     });
 
-    // Shared / AJAX Routes
+    // Pasien Dashboard
+    Route::middleware(['role:pasien'])->prefix('pasien')->name('pasien.')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'pasien'])->name('dashboard');
+    });
+
+    // Shared / AJAX Routes (Accessible by all roles depending on their middleware)
     Route::get('dashboard/statistics', [DashboardController::class, 'getStatistics'])->name('dashboard.statistics');
     Route::get('dokter/by-poli/{poliId}', [DokterController::class, 'getByPoli'])->name('dokter.by-poli');
     Route::get('pasien/search/nik', [PasienController::class, 'searchByNik'])->name('pasien.search-nik');

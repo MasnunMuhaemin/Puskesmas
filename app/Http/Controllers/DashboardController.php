@@ -128,6 +128,54 @@ class DashboardController extends Controller
     }
     
     /**
+     * Petugas Dashboard
+     */
+    public function petugas()
+    {
+        $totalPasien = Pasien::count();
+        $antrianHariIni = Pendaftaran::whereDate('tanggal_daftar', today())->count();
+        $pasienMenunggu = Pendaftaran::whereDate('tanggal_daftar', today())->where('status', 'menunggu')->count();
+        $recentPendaftaran = Pendaftaran::with(['pasien', 'poli'])->latest()->take(5)->get();
+
+        return view('petugas.dashboard', compact('totalPasien', 'antrianHariIni', 'pasienMenunggu', 'recentPendaftaran'));
+    }
+
+    /**
+     * Dokter Dashboard
+     */
+    public function dokter()
+    {
+        $totalPemeriksaan = RekamMedis::count();
+        $pemeriksaanHariIni = RekamMedis::whereDate('tanggal_periksa', today())->count();
+        $antrianSekarang = Pendaftaran::with(['pasien', 'poli'])
+            ->whereDate('tanggal_daftar', today())
+            ->where('status', 'menunggu')
+            ->orderBy('created_at')
+            ->get();
+
+        return view('dokter.dashboard', compact('totalPemeriksaan', 'pemeriksaanHariIni', 'antrianSekarang'));
+    }
+
+    /**
+     * Pasien Dashboard
+     */
+    public function pasien()
+    {
+        $user = auth()->user();
+        $pasien = Pasien::where('nik', $user->nik)->first();
+        
+        $rekamMedis = collect();
+        if ($pasien) {
+            $rekamMedis = RekamMedis::with(['dokter.poli'])
+                ->where('pasien_id', $pasien->id)
+                ->latest('tanggal_periksa')
+                ->get();
+        }
+
+        return view('pasien.dashboard', compact('user', 'pasien', 'rekamMedis'));
+    }
+
+    /**
      * Get statistics for specific date range (AJAX)
      */
     public function getStatistics(Request $request)

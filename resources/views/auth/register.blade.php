@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register - {{ config('app.name', 'Puskesmas') }}</title>
+    <title>Register Pasien - {{ config('app.name', 'Puskesmas') }}</title>
     
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -18,8 +18,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
                     </svg>
                 </div>
-                <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Buat Akun Baru</h1>
-                <p class="text-gray-600 dark:text-gray-400">Daftar untuk mengakses layanan kami</p>
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Registrasi Pasien</h1>
+                <p class="text-gray-600 dark:text-gray-400">Buat akun untuk melihat riwayat medis Anda</p>
             </div>
 
             <!-- Register Card -->
@@ -41,6 +41,32 @@
 
                 <form method="POST" action="{{ route('register') }}" class="space-y-5">
                     @csrf
+                    <input type="hidden" name="role" value="pasien">
+
+                    <!-- NIK Field -->
+                    <div>
+                        <label for="nik" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            Nomor Induk Kependudukan (NIK)
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                            </div>
+                            <input 
+                                id="nik" 
+                                type="text" 
+                                name="nik" 
+                                value="{{ old('nik') }}"
+                                required
+                                maxlength="16"
+                                class="block w-full pl-12 pr-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 font-mono tracking-wider"
+                                placeholder="16 Digit NIK Sesuai KTP"
+                            >
+                        </div>
+                        <p class="mt-1 text-xs text-gray-500 font-medium">*NIK akan disinkronasikan dengan rekam medis.</p>
+                    </div>
 
                     <!-- Name Field -->
                     <div>
@@ -67,31 +93,6 @@
                         </div>
                     </div>
 
-                    <!-- Role Field -->
-                    <div>
-                        <label for="role" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                            Daftar Sebagai
-                        </label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                                </svg>
-                            </div>
-                            <select 
-                                id="role" 
-                                name="role" 
-                                required
-                                class="block w-full pl-12 pr-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 appearance-none shadow-sm"
-                            >
-                                <option value="" disabled selected>Pilih Role</option>
-                                <option value="admin">Admin</option>
-                                <option value="petugas">Petugas</option>
-                                <option value="dokter">Dokter</option>
-                            </select>
-                        </div>
-                    </div>
-
                     <!-- Email Field -->
                     <div>
                         <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
@@ -112,29 +113,6 @@
                                 autocomplete="username"
                                 class="block w-full pl-12 pr-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
                                 placeholder="nama@email.com"
-                            >
-                        </div>
-                    </div>
-
-                    <!-- Phone Field (Optional) -->
-                    <div>
-                        <label for="phone" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                            Nomor Telepon <span class="text-gray-400 font-normal">(Opsional)</span>
-                        </label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                                </svg>
-                            </div>
-                            <input 
-                                id="phone" 
-                                type="tel" 
-                                name="phone" 
-                                value="{{ old('phone') }}"
-                                autocomplete="tel"
-                                class="block w-full pl-12 pr-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
-                                placeholder="08123456789"
                             >
                         </div>
                     </div>
@@ -185,53 +163,20 @@
                         </div>
                     </div>
 
-                    <!-- Terms & Conditions -->
-                    <div class="flex items-start">
-                        <div class="flex items-center h-5">
-                            <input 
-                                id="terms" 
-                                name="terms" 
-                                type="checkbox"
-                                required
-                                class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded cursor-pointer"
-                            >
-                        </div>
-                        <label for="terms" class="ml-2 block text-sm text-gray-700 dark:text-gray-300 cursor-pointer">
-                            Saya menyetujui 
-                            <a href="#" class="text-primary hover:text-primary/80 font-semibold transition-colors">
-                                Syarat & Ketentuan
-                            </a>
-                            dan
-                            <a href="#" class="text-primary hover:text-primary/80 font-semibold transition-colors">
-                                Kebijakan Privasi
-                            </a>
-                        </label>
-                    </div>
-
                     <!-- Submit Button -->
                     <button 
                         type="submit"
                         class="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3.5 px-6 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center space-x-2"
                     >
-                        <span>Daftar Sekarang</span>
+                        <span>Daftar Akun Pasien</span>
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
                         </svg>
                     </button>
                 </form>
 
-                <!-- Divider -->
-                <div class="relative my-8">
-                    <div class="absolute inset-0 flex items-center">
-                        <div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
-                    </div>
-                    <div class="relative flex justify-center text-sm">
-                        <span class="px-4 bg-white/80 dark:bg-gray-800/80 text-gray-500 dark:text-gray-400">atau</span>
-                    </div>
-                </div>
-
                 <!-- Login Link -->
-                <div class="text-center">
+                <div class="text-center mt-8">
                     <p class="text-gray-600 dark:text-gray-400">
                         Sudah punya akun?
                         <a href="{{ route('login') }}" class="font-semibold text-primary hover:text-primary/80 transition-colors ml-1">

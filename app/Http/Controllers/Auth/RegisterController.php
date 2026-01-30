@@ -21,32 +21,19 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role' => ['required', 'in:admin,petugas,dokter'],
+            'nik' => ['required', 'string', 'size:16', 'unique:users,nik'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role,
+            'role' => 'pasien', // Hardcoded as requested
+            'nik' => $request->nik,
         ]);
 
         Auth::login($user);
 
-        return $this->redirectBasedOnRole($user);
-    }
-
-    protected function redirectBasedOnRole($user)
-    {
-        switch ($user->role) {
-            case 'admin':
-                return redirect('/admin/dashboard');
-            case 'petugas':
-                return redirect('/petugas/dashboard');
-            case 'dokter':
-                return redirect('/dokter/dashboard');
-            default:
-                return redirect('/dashboard');
-        }
+        return redirect('/pasien/dashboard');
     }
 }
