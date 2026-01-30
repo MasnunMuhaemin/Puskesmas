@@ -13,10 +13,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 font-sans antialiased" x-data="{ sidebarOpen: true }">
-    <div class="min-h-screen flex overflow-hidden">
+    <div class="h-screen flex overflow-hidden">
         <!-- Sidebar -->
         <aside 
-            class="bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 flex-shrink-0 z-30 fixed inset-y-0 left-0 md:relative h-full"
+            class="bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 flex-shrink-0 z-30 fixed inset-y-0 left-0 md:relative h-screen"
             :class="{ 'w-64 -translate-x-0': sidebarOpen, 'w-0 md:w-20 -translate-x-full md:translate-x-0': !sidebarOpen }"
         >
             <div class="h-full flex flex-col overflow-hidden" :class="{ 'opacity-0 md:opacity-100': !sidebarOpen }">
